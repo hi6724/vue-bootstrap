@@ -4,6 +4,7 @@ import VueRouter from "vue-router";
 import PageOne from "./PageOne.vue";
 import PageTwo from "./PageTwo.vue";
 import PageThree from "./PageThree.vue";
+import PageFour from "./PageFour.vue";
 import BootstrapVue from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
@@ -33,6 +34,11 @@ const router = new VueRouter({
       path: "/pagethree",
       name: "pagethree",
       component: PageThree,
+    },
+    {
+      path: "/pagefour",
+      name: "pagefour",
+      component: PageFour,
     },
   ],
 });
