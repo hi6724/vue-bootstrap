@@ -1,22 +1,8 @@
 <template>
   <div id="app">
-    <!-- <p style="display: flex; justify-content: center; color: aliceblue; gap: 1rem">
-      <router-link :to="{ name: 'main' }">HOME</router-link>
-      <router-link :to="{ name: 'pageone' }">pageone</router-link>
-      <router-link :to="{ name: 'pagetwo' }">pageTwo</router-link>
-      <router-link :to="{ name: 'pagethree' }">pageThree</router-link>
-    </p> -->
     <b-jumbotron header="BootstrapVue" lead="Bootstrap v4 Components for Vue.js 2">
       <p>For more information visit website</p>
-      <b-button variant="primary" href="#">More Info</b-button>
     </b-jumbotron>
-    <div>
-      <b-button v-b-modal.modal-1>Launch demo modal</b-button>
-
-      <b-modal id="modal-1" title="BootstrapVue">
-        <p class="my-4">Hello from modal!</p>
-      </b-modal>
-    </div>
 
     <router-view></router-view>
     <div>만든이 : SSAFY</div>
