@@ -3,7 +3,7 @@
     <div id="list" style="padding: 0 3rem; display: flex; align-items: center; flex-direction: column">
       <h3>글목록</h3>
       <b-container style="display: grid; grid-template-columns: 1fr 1fr 1fr">
-        <div @click="setEdit" v-for="(info, index) in infos" :key="index">
+        <div v-for="(info, index) in infos" :key="index">
           <b-card
             :title="info.no + ' ' + info.title"
             img-src="https://picsum.photos/600/300/?image=25"
@@ -16,8 +16,9 @@
             <b-card-text style="width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis">
               {{ info.content }}
             </b-card-text>
-
-            <b-button href="#" variant="primary">자세히 보기</b-button>
+            <b-button href="#" variant="primary">
+              <router-link :to="'/pageFour/' + info.no" style="color: white"> 자세히 보기 </router-link>
+            </b-button>
           </b-card>
         </div>
       </b-container>
@@ -26,6 +27,7 @@
 </template>
 <script>
 import axios from "axios";
+
 const addr = "http://70.12.50.129:9999/vue/api/board";
 export default {
   name: "PageThree",
@@ -45,6 +47,11 @@ export default {
         content: "",
       },
     };
+  },
+  methods: {
+    handleClick(e) {
+      console.log(e);
+    },
   },
   created() {
     // <목록조회>

@@ -36,7 +36,7 @@ const router = new VueRouter({
       component: PageThree,
     },
     {
-      path: "/pagefour",
+      path: "/pagefour/:no",
       name: "pagefour",
       component: PageFour,
     },

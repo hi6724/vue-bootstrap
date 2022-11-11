@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <b-jumbotron header="BootstrapVue" lead="Bootstrap v4 Components for Vue.js 2">
-      <p>For more information visit website</p>
+    <b-jumbotron header="SSAFY 게시판" lead="http://70.12.50.129:9999/vue/swagger-ui.html">
+      <p>뀨티현제님 놀러오세요~ ❤*.(๓´͈ ˘ `͈๓).*❤</p>
     </b-jumbotron>
 
     <router-view></router-view>
