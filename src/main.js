@@ -1,11 +1,11 @@
 import Vue from "vue";
 import App from "./App.vue";
 import VueRouter from "vue-router";
-import PageOne from "./PageOne.vue";
-import PageTwo from "./PageTwo.vue";
-import PageThree from "./PageThree.vue";
-import PageFour from "./PageFour.vue";
+import Main from "./Main.vue";
+import Detail from "./Detail.vue";
+import Regist from "./Regist.vue";
 import BootstrapVue from "bootstrap-vue";
+import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 
@@ -19,26 +19,17 @@ const router = new VueRouter({
     {
       path: "/",
       name: "main",
+      component: Main,
     },
     {
-      path: "/pageone",
-      name: "pageone",
-      component: PageOne,
+      path: "/detail/:no",
+      name: "detail",
+      component: Detail,
     },
     {
-      path: "/pagetwo",
-      name: "pagetwo",
-      component: PageTwo,
-    },
-    {
-      path: "/pagethree",
-      name: "pagethree",
-      component: PageThree,
-    },
-    {
-      path: "/pagefour/:no",
-      name: "pagefour",
-      component: PageFour,
+      path: "/regist",
+      name: "regist",
+      component: Regist,
     },
   ],
 });

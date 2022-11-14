@@ -1,6 +1,6 @@
 <template lang="">
   <div style="display: flex; justify-content: center; gap: 3rem">
-    <b-card
+    <!-- <b-card
       :title="info.title"
       img-src="https://placekitten.com/g/450/300"
       img-alt="Image"
@@ -13,7 +13,18 @@
       <template #footer>
         <small class="text-muted">{{ info.regtime.split("T")[0] }}</small>
       </template>
+    </b-card> -->
+
+    <b-card
+      :title="info.title"
+      :sub-title="info.regtime.split('T')[0]"
+      style="width: 50vw; height: 100%; min-height: 30rem"
+    >
+      <b-card-text>
+        {{ info.content }}
+      </b-card-text>
     </b-card>
+
     <b-form
       @submit="editPost"
       style="width: 30vw; min-width: 30rem; display: flex; flex-direction: column; gap: 0.5rem"
@@ -31,7 +42,7 @@
       ></b-form-textarea>
 
       <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
+      <b-button @click="handleDelete" type="button" variant="danger">Delete</b-button>
     </b-form>
   </div>
 </template>
@@ -44,34 +55,29 @@ export default {
       info: { content: "", no: "", regtime: "", title: "", writer: "" },
     };
   },
-  created() {
-    console.log();
-    axios({
+  async created() {
+    const { data } = await axios({
       url: `http://70.12.50.129:9999/vue/api/board/${this.$router.history.current.params.no}`,
       method: "get",
-    })
-      .then((respData) => {
-        console.log(respData);
-        // if (respData.status == 200) {
-        //   alert("글 조회 성공");
-        // }
-        this.info = respData.data;
-        console.log(respData.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally();
+    });
+    this.info = data;
   },
   methods: {
-    editPost(e) {
+    async editPost(e) {
       e.preventDefault();
-      axios({
+      await axios({
         url: `http://70.12.50.129:9999/vue/api/board/${this.$router.history.current.params.no}`,
         method: "put",
         data: this.info,
       });
-      location.href = "/pageThree";
+      this.$router.push("/");
+    },
+    async handleDelete() {
+      await axios({
+        url: `http://70.12.50.129:9999/vue/api/board/${this.$router.history.current.params.no}`,
+        method: "DELETE",
+      });
+      this.$router.push("/");
     },
   },
 };

@@ -1,11 +1,23 @@
 <template>
   <div id="app">
-    <b-jumbotron header="SSAFY 게시판" lead="http://70.12.50.129:9999/vue/swagger-ui.html">
+    <b-jumbotron>
+      <template #header>SSAFY 게시판</template>
+
+      <template #lead> http://70.12.50.129:8080 </template>
+
       <p>뀨티현제님 놀러오세요~ ❤*.(๓´͈ ˘ `͈๓).*❤</p>
+
+      <b-button style="margin-right: 1rem" @click="() => this.$router.push('/')" variant="primary" href="#"
+        >홈으로</b-button
+      >
+      <b-button @click="() => this.$router.push('/regist')" variant="success" href="#">글작성</b-button>
     </b-jumbotron>
 
-    <router-view></router-view>
-    <div>만든이 : SSAFY</div>
+    <router-view style="min-height: 60vh"></router-view>
+
+    <div style="padding: 1rem 2rem; border-top: 1px solid black; font-size: 0.8rem">
+      <p>㈜이령컴패니 / 대표: 박이령 / 대표전화: 02-1234-5678 / &copy; 박이령 손유진 안재하 하훈목</p>
+    </div>
   </div>
 </template>
 
@@ -18,7 +30,7 @@ export default {
 
 <style>
 #app {
-  font-family: "Comic Mono", "메이플스토리", Avenir, Helvetica, Arial, sans-serif;
+  font-family: "mapleStory", "Courier New", Courier, monospace;
 }
 html,
 body,
