@@ -5,7 +5,11 @@
       <b-container style="display: grid; grid-template-columns: 1fr 1fr 1fr; justify-content: center; gap: 1rem">
         <div v-for="(info, index) in infos" :key="index">
           <b-card-group deck>
-            <b-card :title="info.title" header-tag="header" style="width: 25vw">
+            <b-card
+              :title="info.title"
+              header-tag="header"
+              style="width: 25vw; overflow: hidden; white-space: nowrap; text-overflow: ellipsis"
+            >
               <template #header>
                 <h6 class="mb-0">{{ info.regtime.split("T")[0] }}</h6>
               </template>
@@ -24,7 +28,7 @@
 </template>
 <script>
 import axios from "axios";
-const addr = "http://70.12.50.129:9999/vue/api/board";
+const addr = "http://70.12.50.125:9999/vue/api/board";
 export default {
   // eslint-disable-next-line
   name: "Main",
@@ -42,7 +46,11 @@ export default {
     // <목록조회>
     const { data } = await axios.get(addr);
     this.infos = data;
-    console.log(data);
+    setInterval(async () => {
+      const { data } = await axios.get(addr);
+      this.infos = data;
+      console.log(data);
+    }, 1000);
   },
 };
 </script>

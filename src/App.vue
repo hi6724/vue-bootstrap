@@ -1,11 +1,23 @@
 <template>
   <div id="app">
     <b-jumbotron>
-      <template #header>SSAFY 게시판</template>
+      <template #header
+        ><img style="height: 4.5rem" src="/favi.ico" />
+        <span
+          style="
+            background-image: linear-gradient(90deg, red, orange, yellow, green, blue, navy, purple);
+            -webkit-background-clip: text;
+            color: transparent;
+            font-weight: bold;
+          "
+          >쁘띠현제 비밀일기장</span
+        >
+        <img style="height: 4.5rem" src="/favi.ico" />
+      </template>
 
-      <template #lead> http://70.12.50.129:8080 </template>
+      <template #lead> http://70.12.50.125:8080 </template>
 
-      <p>뀨티현제님 놀러오세요~ ❤*.(๓´͈ ˘ `͈๓).*❤</p>
+      <p>글 많이 써주세요~ ❤*.(๓´͈ ˘ `͈๓).*❤</p>
 
       <b-button style="margin-right: 1rem" @click="() => this.$router.push('/')" variant="primary" href="#"
         >홈으로</b-button
@@ -13,7 +25,15 @@
       <b-button @click="() => this.$router.push('/regist')" variant="success" href="#">글작성</b-button>
     </b-jumbotron>
 
-    <router-view style="min-height: 60vh"></router-view>
+    <router-view
+      style="
+        min-height: 60vh;
+        background-image: url('/bg.jpeg');
+        background-repeat: repeat;
+        background-size: contain;
+        padding: 1rem;
+      "
+    ></router-view>
 
     <div style="padding: 1rem 2rem; border-top: 1px solid black; font-size: 0.8rem">
       <p>㈜이령컴패니 / 대표: 박이령 / 대표전화: 02-1234-5678 / &copy; 박이령 손유진 안재하 하훈목</p>
@@ -25,6 +45,11 @@
 export default {
   name: "App",
   components: {},
+  data() {
+    return {
+      img: require("./assets/bg.jpeg"),
+    };
+  },
 };
 </script>
 

@@ -18,7 +18,7 @@
     <b-card
       :title="info.title"
       :sub-title="info.regtime.split('T')[0]"
-      style="width: 50vw; height: 100%; min-height: 30rem"
+      style="width: 30vw; height: 100%; min-height: 30rem"
     >
       <b-card-text>
         {{ info.content }}
@@ -39,6 +39,7 @@
         placeholder="Enter Content..."
         rows="3"
         max-rows="6"
+        style="height: 25rem"
       ></b-form-textarea>
 
       <b-button type="submit" variant="primary">Submit</b-button>
@@ -57,7 +58,7 @@ export default {
   },
   async created() {
     const { data } = await axios({
-      url: `http://70.12.50.129:9999/vue/api/board/${this.$router.history.current.params.no}`,
+      url: `http://70.12.50.125:9999/vue/api/board/${this.$router.history.current.params.no}`,
       method: "get",
     });
     this.info = data;
@@ -66,7 +67,7 @@ export default {
     async editPost(e) {
       e.preventDefault();
       await axios({
-        url: `http://70.12.50.129:9999/vue/api/board/${this.$router.history.current.params.no}`,
+        url: `http://70.12.50.125:9999/vue/api/board/${this.$router.history.current.params.no}`,
         method: "put",
         data: this.info,
       });
@@ -74,7 +75,7 @@ export default {
     },
     async handleDelete() {
       await axios({
-        url: `http://70.12.50.129:9999/vue/api/board/${this.$router.history.current.params.no}`,
+        url: `http://70.12.50.125:9999/vue/api/board/${this.$router.history.current.params.no}`,
         method: "DELETE",
       });
       this.$router.push("/");

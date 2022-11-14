@@ -14,6 +14,7 @@
         placeholder="Enter Content..."
         rows="3"
         max-rows="6"
+        style="height: 25rem"
       ></b-form-textarea>
 
       <b-button type="submit" variant="primary">Submit</b-button>
@@ -33,7 +34,7 @@ export default {
   methods: {
     async onSubmit(e) {
       e.preventDefault();
-      const url = "http://70.12.50.129:9999/vue/api/board";
+      const url = "http://70.12.50.125:9999/vue/api/board";
       const regtime = new Date().toISOString();
       const data = {
         ...this.info,
