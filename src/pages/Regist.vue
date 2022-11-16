@@ -34,11 +34,11 @@ export default {
   methods: {
     async onSubmit(e) {
       e.preventDefault();
-      const url = "http://70.12.50.125:9999/vue/api/board";
+      const url = "http://70.12.50.130:9999/vue/api/board";
       const regtime = new Date().toISOString();
       const data = {
         ...this.info,
-        writer: "ssafy",
+        writer: this.$store.state.user.user_id,
         regtime,
       };
       await axios({

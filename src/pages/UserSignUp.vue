@@ -77,7 +77,13 @@ export default {
         alert("이미 존재하는 아이디 입니다");
         return;
       }
-      this.$store.dispatch("login", { username: "ssafy" });
+      this.$store.dispatch("login", {
+        join_date: null,
+        name: this.name,
+        pwd: this.password,
+        user_id: this.userId,
+        user_no: null,
+      });
       this.$router.push("/");
     },
   },

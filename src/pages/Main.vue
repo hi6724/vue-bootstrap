@@ -7,7 +7,8 @@
           <b-card-group deck>
             <b-card :title="info.title" header-tag="header" style="width: 25vw; font-size: 1.4rem">
               <template #header>
-                <h6 style="font-size: 0.8rem">{{ info.regtime.split("T")[0] }}</h6>
+                <h6 style="font-size: 0.8rem; margin-bottom: 0.2rem">{{ info.regtime.split("T")[0] }}</h6>
+                <h6 style="font-size: 0.8rem">작성자: {{ info.name ? info.name : info.writer }}</h6>
               </template>
               <b-card-text class="overflow-text mb-4" style="font-size: 1rem"> {{ info.content }}</b-card-text>
               <b-button href="#" variant="primary">
@@ -22,7 +23,7 @@
 </template>
 <script>
 import axios from "axios";
-const addr = "http://70.12.50.129:9999/vue/api/board";
+const addr = "http://70.12.50.130:9999/vue/api/board";
 let intervalId;
 export default {
   // eslint-disable-next-line
@@ -41,15 +42,16 @@ export default {
     // <목록조회>
     const { data } = await axios.get(addr);
     this.infos = data;
-    intervalId = setInterval(async () => {
-      const { data } = await axios.get(addr);
-      this.infos = data;
-      console.log(data);
-    }, 1000);
+    console.log(intervalId);
+    // intervalId = setInterval(async () => {
+    //   const { data } = await axios.get(addr);
+    //   this.infos = data;
+    //   console.log(data);
+    // }, 1000);
   },
-  destroyed() {
-    clearInterval(intervalId);
-  },
+  // destroyed() {
+  //   clearInterval(intervalId);
+  // },
 };
 </script>
 <style lang="scss">

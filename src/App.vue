@@ -3,7 +3,7 @@
     <b-jumbotron>
       <template #header
         ><img style="height: 4.5rem" src="/favi.ico" />
-        <span class="title">쁘띠현제한테 물어보세용 ㅎㅎ</span>
+        <span @click="check" class="title">쁘띠현제한테 물어보세용 ㅎㅎ</span>
         <img style="height: 4.5rem" src="/favi.ico" />
       </template>
       <div class="header-items">
@@ -12,7 +12,7 @@
         <div v-if="this.$store.state.user">
           <b-button @click="() => this.$router.push('/')" variant="primary" href="#">홈으로</b-button>
           <b-button @click="() => this.$router.push('/regist')" variant="success" href="#">질문작성</b-button>
-          <b-button @click="() => this.$store.dispatch('logout')" variant="success" href="#">로그아웃</b-button>
+          <b-button @click="logout" variant="success" href="#">로그아웃</b-button>
         </div>
         <div v-else>
           <b-button @click="() => this.$router.push('/')" variant="primary" href="#">홈으로</b-button>
@@ -42,6 +42,15 @@ export default {
   created() {
     const user = localStorage.getItem("user");
     user && this.$store.dispatch("login", JSON.parse(user));
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+      this.$router.push("/");
+    },
+    check() {
+      console.log(this.$store.state.user.user_id);
+    },
   },
 };
 </script>

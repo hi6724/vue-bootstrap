@@ -57,7 +57,8 @@ export default {
         alert("틀렸습니다");
         return;
       }
-      this.$store.dispatch("login", { username: "ssafy" });
+      console.log(data);
+      this.$store.dispatch("login", data);
       this.$router.push("/");
     },
   },
