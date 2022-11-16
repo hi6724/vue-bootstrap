@@ -1,13 +1,17 @@
 import Vue from "vue";
-import App from "./App.vue";
 import VueRouter from "vue-router";
-import Main from "./Main.vue";
-import Detail from "./Detail.vue";
-import Regist from "./Regist.vue";
 import BootstrapVue from "bootstrap-vue";
-import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
+
+import App from "@/App.vue";
+import Main from "@/pages/Main.vue";
+import Detail from "@/pages/Detail.vue";
+import Regist from "@/pages/Regist.vue";
+import UserLogin from "@/pages/UserLogin.vue";
+import UserSignUp from "@/pages/UserSignUp.vue";
+
+import store from "@/store";
 
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
@@ -31,10 +35,21 @@ const router = new VueRouter({
       name: "regist",
       component: Regist,
     },
+    {
+      path: "/login",
+      name: "login",
+      component: UserLogin,
+    },
+    {
+      path: "/signup",
+      name: "signup",
+      component: UserSignUp,
+    },
   ],
 });
 
 new Vue({
   router,
+  store,
   render: (h) => h(App),
 }).$mount("#app");

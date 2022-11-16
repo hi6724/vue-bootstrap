@@ -3,40 +3,29 @@
     <b-jumbotron>
       <template #header
         ><img style="height: 4.5rem" src="/favi.ico" />
-        <span
-          style="
-            background-image: linear-gradient(90deg, red, orange, yellow, green, blue, navy, purple);
-            -webkit-background-clip: text;
-            color: transparent;
-            font-weight: bold;
-          "
-          >쁘띠현제 비밀일기장</span
-        >
+        <span class="title">쁘띠현제한테 물어보세용 ㅎㅎ</span>
         <img style="height: 4.5rem" src="/favi.ico" />
       </template>
-
-      <template #lead> http://70.12.50.125:8080 </template>
-
-      <p>글 많이 써주세요~ ❤*.(๓´͈ ˘ `͈๓).*❤</p>
-
-      <b-button style="margin-right: 1rem" @click="() => this.$router.push('/')" variant="primary" href="#"
-        >홈으로</b-button
-      >
-      <b-button @click="() => this.$router.push('/regist')" variant="success" href="#">글작성</b-button>
+      <div class="header-items">
+        <p>http://70.12.50.129:8080</p>
+        <p>많은 질문 기다릴게요 ❤*.(๓´͈ ˘ `͈๓).*❤</p>
+        <div v-if="this.$store.state.user">
+          <b-button @click="() => this.$router.push('/')" variant="primary" href="#">홈으로</b-button>
+          <b-button @click="() => this.$router.push('/regist')" variant="success" href="#">질문작성</b-button>
+          <b-button @click="() => this.$store.dispatch('logout')" variant="success" href="#">로그아웃</b-button>
+        </div>
+        <div v-else>
+          <b-button @click="() => this.$router.push('/')" variant="primary" href="#">홈으로</b-button>
+          <b-button @click="() => this.$router.push('/login')" variant="success" href="#">로그인</b-button>
+          <b-button @click="() => this.$router.push('/signup')" variant="success" href="#">회원가입</b-button>
+        </div>
+      </div>
     </b-jumbotron>
 
-    <router-view
-      style="
-        min-height: 60vh;
-        background-image: url('/bg.jpeg');
-        background-repeat: repeat;
-        background-size: contain;
-        padding: 1rem;
-      "
-    ></router-view>
+    <router-view class="app-view"></router-view>
 
-    <div style="padding: 1rem 2rem; border-top: 1px solid black; font-size: 0.8rem">
-      <p>㈜이령컴패니 / 대표: 박이령 / 대표전화: 02-1234-5678 / &copy; 박이령 손유진 안재하 하훈목</p>
+    <div class="app-footer">
+      <p>㈜현제컴패니 / 대표: 최현제 / 대표전화: 02-1234-5678 / &copy; 박이령 하훈목</p>
     </div>
   </div>
 </template>
@@ -50,135 +39,53 @@ export default {
       img: require("./assets/bg.jpeg"),
     };
   },
+  created() {
+    const user = localStorage.getItem("user");
+    user && this.$store.dispatch("login", JSON.parse(user));
+  },
 };
 </script>
 
-<style>
+<style lang="scss">
+@import "./reset.scss";
+@font-face {
+  font-family: "mapleStory";
+  src: url("./assets/font.ttf");
+}
+@font-face {
+  font-family: "boldFont";
+  src: url("./assets/fontBold.ttf");
+}
 #app {
   font-family: "mapleStory", "Courier New", Courier, monospace;
 }
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
+.header-items {
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+  }
+  div {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+  }
 }
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
+.app-footer {
+  padding: 1rem 2rem;
+  border-top: 1px solid black;
+  font-size: 0.8rem;
 }
-body {
-  line-height: 1;
+.app-view {
+  min-height: 60vh;
+  background-image: url("../public/bg.jpeg");
+  background-repeat: repeat;
+  background-size: contain;
+  padding: 1rem;
 }
-ol,
-ul {
-  list-style: none;
-}
-blockquote,
-q {
-  quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: "";
-  content: none;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+.title {
+  background-image: linear-gradient(90deg, red, orange, yellow, green, blue, navy, purple);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: bold;
 }
 </style>
